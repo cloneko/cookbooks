@@ -1,0 +1,4 @@
+image=vmlinuz
+label=LMDE
+initrd=initrd.img
+append="boot=live live-config live-media-path=/live netboot=nfs nfsroot=<%= @ipaddress %>:/mnt/lmde/"
