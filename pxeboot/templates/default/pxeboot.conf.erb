@@ -1,5 +1,0 @@
-default LMDE
-
-LABEL LMDE
-    KERNEL /live/vmlinuz
-    APPEND initrd=/live/initrd.img vga=791 boot=live config live-media-path=/live netboot=nfs nfsroot=<%= node[:ipaddress] %>:/mnt/lmde/
