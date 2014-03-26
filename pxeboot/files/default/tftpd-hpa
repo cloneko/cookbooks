@@ -3,4 +3,4 @@
 TFTP_USERNAME="tftp"
 TFTP_DIRECTORY="/var/lib/tftpboot"
 TFTP_ADDRESS="0.0.0.0:69"
-TFTP_OPTIONS="-p -l -s -v -B 1024"
+TFTP_OPTIONS="-p -l -s -v -B 65464"

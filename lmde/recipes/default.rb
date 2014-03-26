@@ -1,9 +1,9 @@
 #
 # Cookbook Name:: lmde # Recipe:: default
 #
-# Copyright 2014, Yonashiro Yuu <yonashiro@std.it-college.ac.jp>
+# Copyright 2014, Yonashiro Yuu <cloneko@gmail.com>
 #
-# All rights reserved - Do Not Redistribute 
+# Under MIT License
 #
 # Ref: https://wiki.ubuntu.com/UEFI/PXE-netboot-install 
 
