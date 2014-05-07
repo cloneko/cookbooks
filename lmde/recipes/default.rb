@@ -92,7 +92,7 @@ bash "Setup for PXEboot" do
 end
 
 service "dnsmasq" do
-	action [:enable, :stop, :start]
+	action [:enable, :stop]
 end
 
 service "nfs-kernel-server" do
