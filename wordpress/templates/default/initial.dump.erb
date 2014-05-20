@@ -1,0 +1,2 @@
+CREATE DATABASE <%= @db %> DEFAULT CHARACTER SET UTF8;
+GRANT ALL PRIVILEGES ON <%= @db %>.* TO <%= @user %>@localhost identified by '<%= @pw %>';

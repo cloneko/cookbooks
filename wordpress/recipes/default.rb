@@ -24,16 +24,26 @@ remote_file "#{node['documentroot']}/wordpress.tgz" do
 	action :create_if_missing
 end
 
-bash "Extract Wordpress" do
+execute "Extract Wordpress" do
 	cwd "#{node['documentroot']}"
-	command <<-EOH
-	tar zxpf wordpress.tgz
-	EOH
+	command "tar zxpf wordpress.tgz && chown www-data wordpress"
+	not_if { ::File.exists?("#{node['documentroot']}/wordpress")}
+	action :run
 end
 
-bash "MySQL CREATE" do
-	command <<- EOH
-	echo "CREATE DATABASE #{node['wordpress']['mysql_db']} DEFAULT CHARACTER SET UTF8" | mysql -u root
-	echo "GRANT ALL PRIVILEGES ON #{node['wordpress']['mysql_db']}.* TO #{node['wordpress']['mysql_id']}@localhost identified by '#{node['wordpress']['mysql_pw']}'" | mysql -u root #{node['wordpress']['mysql_db']}
-	EOH
+template "/tmp/initial.dump" do
+		source "initial.dump.erb"
+		mode 0440 
+		variables({
+			:db => node['wordpress']['mysql_db'],
+			:user => node['wordpress']['mysql_id'],
+			:pw => node['wordpress']['mysql_pw'] 
+		})
+
+		action :create
+end
+
+execute "MySQL CREATE" do
+	command "mysql -u root < /tmp/initial.dump"
+	action :run
 end
