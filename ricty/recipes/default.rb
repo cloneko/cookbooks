@@ -34,6 +34,10 @@ remote_file "#{Chef::Config[:file_cache_path]}/Ricty.zip" do
 	action :create
 end
 
+directory "/usr/share/fonts/truetype/ricty" do
+	action :create
+end
+
 bash "build ricty" do
 		cwd "#{Chef::Config[:file_cache_path]}"
 		code <<-EOH
@@ -42,6 +46,8 @@ bash "build ricty" do
 		mv migu-*/* .
 		mv Ricty-*/* .
 		./ricty_generator.sh auto
+		cp -f Ricty*.ttf /usr/share/fonts/truetype/ricty
 		rm -fr Inconsolata.otf README.md Ricty.zip migu* ipag* misc remote_file ricty_* 
+
 		EOH
 end
